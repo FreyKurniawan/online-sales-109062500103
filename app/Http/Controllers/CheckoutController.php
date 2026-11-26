@@ -38,10 +38,15 @@ class CheckoutController extends Controller
             $items->push(compact('product', 'quantity', 'lineTotal'));
         }
 
+        // Token sekali pakai untuk mencegah pesanan ganda saat tombol diklik dua kali
+        $checkoutToken = (string) Str::uuid();
+        $request->session()->put('checkout_token', $checkoutToken);
+
         return view('checkout.index', [
             'items' => $items,
             'subtotal' => $subtotal,
             'shippingServices' => ShippingService::where('is_active', true)->orderBy('courier')->get(),
+            'checkoutToken' => $checkoutToken,
         ]);
     }
 
@@ -51,6 +56,13 @@ class CheckoutController extends Controller
 
         if ($cart === []) {
             return redirect()->route('cart.index')->with('error', 'Keranjang masih kosong.');
+        }
+
+        $token = $request->session()->pull('checkout_token');
+
+        if (! $token || $token !== $request->input('checkout_token')) {
+            return redirect()->route('orders.index')
+                ->with('error', 'Checkout sudah diproses atau sesi sudah tidak valid. Cek riwayat pesananmu.');
         }
 
         $order = DB::transaction(function () use ($request, $cart) {
