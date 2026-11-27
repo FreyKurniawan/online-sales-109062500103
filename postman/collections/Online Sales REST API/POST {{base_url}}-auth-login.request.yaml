@@ -1,0 +1,17 @@
+$kind: http-request
+name: Login
+description: ""
+url: '{{base_url}}/auth/login'
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "customer@example.com",
+      "password": "password123",
+      "device_name": "Postman Praktikum"
+    }
+order: 3000

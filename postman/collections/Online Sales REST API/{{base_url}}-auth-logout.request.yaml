@@ -1,0 +1,9 @@
+$kind: http-request
+name: "{{base_url}}/auth/logout"
+description: ""
+url: "{{base_url}}/auth/logout"
+method: POST
+body:
+  type: json
+  content: ""
+order: 12000

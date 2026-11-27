@@ -1,0 +1,9 @@
+$kind: http-request
+name: "{{base_url}}/admin/orders/{{order_id}}/cancel"
+description: ""
+url: "{{base_url}}/admin/orders/{{order_id}}/cancel"
+method: PATCH
+body:
+  type: json
+  content: ""
+order: 13000

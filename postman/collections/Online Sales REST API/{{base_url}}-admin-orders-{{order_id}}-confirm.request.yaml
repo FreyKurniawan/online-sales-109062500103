@@ -1,0 +1,16 @@
+$kind: http-request
+name: "{{base_url}}/admin/orders/{{order_id}}/confirm"
+description: ""
+url: "{{base_url}}/admin/orders/{{order_id}}/confirm "
+method: PATCH
+headers:
+  Accept: application/json
+  Authorization: Bearer {{admin_token}}
+body:
+  type: json
+  content: '{"status":"processed"}'
+auth:
+  type: bearer
+  credentials:
+    token: "{{admin_token}}"
+order: 8000
