@@ -6,5 +6,8 @@ if (config('app.env') === 'production') {
     URL::forceScheme('https');
 }
 
+return [
+    App\Providers\AppServiceProvider::class,
+];
 
 
