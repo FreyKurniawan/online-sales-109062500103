@@ -1,7 +1,10 @@
 <?php
 
-use App\Providers\AppServiceProvider;
+use Illuminate\Support\Facades\URL;
 
-return [
-    AppServiceProvider::class,
-];
+if (config('app.env') === 'production') {
+    URL::forceScheme('https');
+}
+
+
+
