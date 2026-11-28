@@ -1,6 +1,6 @@
 $kind: collection
 variables:
-  base_url: ""
+  base_url: https://online-sales-109062500103.vercel.app/api/
   customer_token: ""
   admin_token: ""
   order_id: ""

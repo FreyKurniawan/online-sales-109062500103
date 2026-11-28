@@ -3,7 +3,27 @@ name: "{{base_url}}/auth/login"
 description: ""
 url: "{{base_url}}/auth/login"
 method: POST
+headers:
+  Accept: application/json
 body:
   type: json
-  content: ""
+  content: "{\r
+
+    \  \"email\": \"admin@example.com\",\r
+
+    \  \"password\": \"Admin12345!\",\r
+
+    \  \"device_name\": \"Postman Admin\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{customer_token}}"
+scripts:
+  - type: afterResponse
+    code: "const json = pm.response.json();\r
+
+      pm.collectionVariables.set('admin_token', json.access_token);"
+    language: text/javascript
 order: 6000

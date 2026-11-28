@@ -2,5 +2,32 @@ $kind: http-request
 name: "{{base_url}}/checkout"
 description: ""
 url: "{{base_url}}/checkout"
-method: GET
+method: POST
+headers:
+  Accept: application/json
+body:
+  type: json
+  content: "{\r
+
+    \  \"recipient_name\": \"Budi Customer\",\r
+
+    \  \"phone\": \"081234567890\",\r
+
+    \  \"address\": \"Jl. Praktikum No. 10, Purwokerto\",\r
+
+    \  \"shipping_service_id\": 1,\r
+
+    \  \"items\": [\r
+
+    \    {\"product_id\": 1, \"quantity\": 2},\r
+
+    \    {\"product_id\": 3, \"quantity\": 1}\r
+
+    \  ]\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{customer_token}}"
 order: 5000
