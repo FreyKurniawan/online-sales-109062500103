@@ -38,6 +38,8 @@ RUN mkdir -p \
     bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
+RUN php artisan package:discover --ansi || true
+
 ENV APP_ENV=production
 ENV APP_DEBUG=false
 CMD ["frankenphp", "run", "--config", "/etc/caddy/Caddyfile"]
